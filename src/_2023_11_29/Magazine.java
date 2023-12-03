@@ -21,6 +21,9 @@ public class Magazine extends LibraryItem{
                 '}';
     }
 
+
+
+
     public Magazine(String title, String author, Genre genre, int issueNumber, LocalDate releaseDate, boolean isMonthly) {
         super(title, author, genre);
         this.issueNumber = issueNumber;

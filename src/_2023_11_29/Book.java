@@ -11,6 +11,11 @@ public class Book extends LibraryItem implements Borrowable, Maintainable{
     private BookStatus status;
     private LocalDate publishDate;
     private int pageCount;
+    private ItemCondition condition;
+
+    private ItemCondition getCondition() {
+        return condition;
+    }
 
     public BookStatus getStatus() {
         return status;
@@ -25,7 +30,7 @@ public class Book extends LibraryItem implements Borrowable, Maintainable{
                 '}';
     }
 
-    public Book(String title, String author, Genre genre, BookStatus status, LocalDate publishDate, int pageCount) {
+    public Book(String title, String author, Genre genre, BookStatus status, LocalDate publishDate, int pageCount, ItemCondition condition) {
         super(title, author, genre);
         this.status = status;
         this.publishDate = publishDate;
@@ -40,7 +45,7 @@ public class Book extends LibraryItem implements Borrowable, Maintainable{
         return pageCount;
     }
 
-    public void setStatus(BookStatus status) {
+    public void setStatus() {
         this.status = status;
     }
 
