@@ -11,6 +11,7 @@ public class Magazine extends LibraryItem{
     private  int issueNumber;
     private LocalDate releaseDate;
     private boolean isMonthly;
+    private ItemCondition itemCondition;
 
     @Override
     public String toString() {
@@ -29,10 +30,14 @@ public class Magazine extends LibraryItem{
         this.issueNumber = issueNumber;
         this.releaseDate = releaseDate;
         this.isMonthly = isMonthly;
+        this.itemCondition = itemCondition;
     }
 
     public int getIssueNumber() {
         return issueNumber;
+    }
+    public ItemCondition getItemCondition() {
+        return itemCondition;
     }
 
     public void setIssueNumber(int issueNumber) {

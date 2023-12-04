@@ -2,7 +2,6 @@ package _2023_11_29;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -28,8 +27,8 @@ public class CollectionProcessor {
         //groupItemsByAuthor(libraryItems);
         //updateStatus(libraryItems, BookStatus.AVAILABLE, BookStatus.BORROWWED);
         //displayItemCount(libraryItems);
-       // User Urmat = new User("Urmat", "13", );//TODO
-       // listBorrowedItemsByUser(libraryItems, Urmat);
+        // User Urmat = new User("Urmat", "13", );//TODO
+        // listBorrowedItemsByUser(libraryItems, Urmat);
 
     }
 
@@ -57,7 +56,7 @@ public class CollectionProcessor {
     }
 
     static void sortByTitle(List<LibraryItem> items) {
-        Collections.sort(items, Comparator.comparing(LibraryItem::getTitle));
+        items.sort(Comparator.comparing(LibraryItem::getTitle));
         for (LibraryItem item : items) {
             System.out.println(item.getTitle());
         }
@@ -89,25 +88,25 @@ public class CollectionProcessor {
     static void updateStatus(List<LibraryItem> items, BookStatus oldStatus, BookStatus newStatus) {
         for (LibraryItem item : items) {
             if (item instanceof Book) {
-                System.out.print(item + "Old Status : ");
-                System.out.println(oldStatus = ((Book) item).getStatus());
-
-                ((Book) item).setStatus(); //TODO
+                Book temp = (Book) item;
+                if (temp.getStatus().equals(oldStatus)) {
+                    temp.setStatus(newStatus);
+                }
             }
         }
     }
 
-    static void listAvailableItems(List<LibraryItem> items) {
+    static List<LibraryItem> listAvailableItems(List<LibraryItem> items) {
+        List<LibraryItem> listAvailableItems = new ArrayList<>();
         for (LibraryItem item : items) {
             if (item instanceof Book) {
-                if (((Book) item).getStatus().equals(BookStatus.AVAILABLE)) {
-                    System.out.print(item.getAuthor() + " ");
-                    System.out.print(item.getTitle() + " ");
-                    System.out.print(item.getGenre() + " ");
-                    System.out.println(item);
+                Book temp = (Book) item;
+                if (temp.isAvailable()) {
+                    listAvailableItems.add(temp);
                 }
             }
         }
+        return listAvailableItems;
     }
 
     static LibraryItem findOldestItem(List<LibraryItem> items) {
@@ -149,14 +148,17 @@ public class CollectionProcessor {
         }
     }
 
-    static void listItemsForRepair(List<LibraryItem> items, ItemCondition condition) {
+    static List<LibraryItem> listItemsForRepair(List<LibraryItem> items, ItemCondition condition) {
+        List<LibraryItem> listForRepair = new ArrayList<>();
         for (LibraryItem item : items) {
             if (item instanceof Book) {
-                if (((Book) item).checkCondition().equals(ItemCondition.DAMAGE)) {
-                    //updateStatus((((Book) item));//TODO
+                Book temp = (Book) item;
+                if (temp.getStatus().equals(BookStatus.UNDER_REPAIR)) {
+                    listForRepair.add(item);
                 }
             }
         }
+        return listForRepair;
     }
 
     static void displayItemCount(List<LibraryItem> items) {
@@ -168,47 +170,100 @@ public class CollectionProcessor {
     }
 
 
-    static void listBorrowedItemsByUser(List<LibraryItem> items, User user) {
-        for (LibraryItem item : items) {
-            if (user.getBorrowedItems().equals(items)){
-                System.out.println(item);//TODO
+    static List<LibraryItem> listBorrowedItemsByUser(List<LibraryItem> items, User user) {
+        List<LibraryItem> listBorrowedByUser = new ArrayList<>();
+        for (LibraryItem item : user.getBorrowedItems()) {
+            if (items.contains(item)) {
+                listBorrowedByUser.add(item);
             }
         }
-            System.out.println();
+
+        return listBorrowedByUser;
     }
 
     static void removeLostItems(List<LibraryItem> items) {
-
-    }
-
-    static void addItemToList(List<LibraryItem> items, LibraryItem item) {
-
-    }
-
-    static void removeItemFromList(List<LibraryItem> items, LibraryItem item) {
-
-    }
-
-    static void sortItemsByPublicationDate(List<LibraryItem> items) {
-        for (int i = 0; i < items.size(); i++) {
-
+        for (LibraryItem item : items) {
+            if (item instanceof Book) {
+                Book temp = (Book) item;
+                if (temp.getStatus().equals(BookStatus.LOST)) {
+                    items.remove(item);
+                }
+            }
         }
     }
 
-    static void findMostPopularGenre(List<LibraryItem> items) {
+    static void addItemToList(List<LibraryItem> items, LibraryItem item) {
+        items.add(item);
+    }
 
+    static void removeItemFromList(List<LibraryItem> items, LibraryItem item) {
+        items.remove(item);
+    }
+
+    static void sortItemsByPublicationDate(List<LibraryItem> items) {
+
+    }
+
+    static Genre findMostPopularGenre(List<LibraryItem> items) {
+        List<Genre> genres = new ArrayList<>();
+
+        for (LibraryItem item : items) {
+            if (!genres.contains(item.getGenre())) {
+                genres.add(item.getGenre());
+            }
+        }
+
+        int countGenres = 1;
+        Genre popular = null;
+
+        for (Genre genre : genres) {
+            int temp = 1;
+            for (LibraryItem item : items) {
+                if (genre.equals(item.getGenre())) {
+                    temp++;
+                }
+            }
+            if (countGenres < temp) {
+                countGenres = temp;
+                popular = genre;
+            }
+        }
+
+        return popular;
     }
 
     static void calculateAveragePageCount(List<Book> books) {
-
+        int sum = 0;
+        for (Book book : books) {
+            sum += book.getPageCount();
+        }
     }
 
-    static void listMonthlyMagazines(List<Magazine> magazines) {
+    static List<Magazine> listMonthlyMagazines(List<Magazine> magazines) {
+        List<Magazine> monthlyMagazines = new ArrayList<>();
+        for (Magazine magazine : magazines) {
+            if (magazine.isMonthly()) {
+                monthlyMagazines.add(magazine);
+            }
+        }
 
+        return monthlyMagazines;
     }
 
-    static void listItemsByCondition(List<LibraryItem> items, ItemCondition condition) {
+    static List<LibraryItem> listItemsByCondition(List<LibraryItem> items, ItemCondition condition) {
+        List<LibraryItem> listByCondition = new ArrayList<>();
 
+        for (LibraryItem item : items) {
+            if (item instanceof Magazine) {
+                Magazine temp = (Magazine) item;
+                if (temp.getItemCondition().equals(condition)) {
+                    listByCondition.add(temp);
+                }
+            }
+        }
+
+        return listByCondition;
     }
-
 }
+
+

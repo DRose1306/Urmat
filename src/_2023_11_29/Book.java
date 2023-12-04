@@ -45,7 +45,7 @@ public class Book extends LibraryItem implements Borrowable, Maintainable{
         return pageCount;
     }
 
-    public void setStatus() {
+    public void setStatus(BookStatus status) {
         this.status = status;
     }
 
@@ -59,7 +59,8 @@ public class Book extends LibraryItem implements Borrowable, Maintainable{
 
     @Override
     public void borrowItem(User user) {
-
+        user.getBorrowedItems().add(this);
+        this.status = BookStatus.BORROWWED;
     }
 
     @Override
