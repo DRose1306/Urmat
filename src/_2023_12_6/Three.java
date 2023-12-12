@@ -15,9 +15,9 @@ public class Three {
         User user2 = new User("Edgar", 61);
         User user3 = new User("Krista", 84);
 
+        userStringMap.put(user3, "Mueller");
         userStringMap.put(user1, "Bolotbekov");
         userStringMap.put(user2, "Scmidt");
-        userStringMap.put(user3, "Mueller");
         System.out.println(userStringMap);
 
         System.out.print("Names: ");
@@ -26,7 +26,7 @@ public class Three {
         }
 
     }
-    public static class User implements Comparable {
+    public static class User implements Comparable <User>{
 
         private String name;
         private int age;
@@ -63,18 +63,18 @@ public class Three {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             User user = (User) o;
-            return age == user.age && Objects.equals(name, user.name);
+            return age == user.age;
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(name, age);
+            return Objects.hash( age);
         }
 
 
         @Override
-        public int compareTo(Object o) {
-            return 0;
+        public  int compareTo(User o) {
+            return this.age - o.age;
         }
     }
 
