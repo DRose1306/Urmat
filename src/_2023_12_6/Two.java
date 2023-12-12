@@ -4,16 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class MapExp {
+public class Two {
     public static void main(String[] args) {
-
-        Map<String, Integer> map = new HashMap<>();
-        map.put("Alex", 15);
-        map.put("Slava", 18);
-        map.put("Jake", 20);
-        map.put("Jon", 25);
-        map.put("Tayler", 30);
-        map.put("Bled", 12);
+        //***Создайте HashMap<Integer, String>, представляющий
+        //"ID-имя пользователя". Используйте цикл для фильтрации
+        //пользователей с ID больше 100 и копируйте их в TreeMap.
 
         Map<Integer, String> treeMap = new HashMap<>();
         treeMap.put(50, "Alex");
@@ -22,24 +17,9 @@ public class MapExp {
         treeMap.put(105, "Jon");
         treeMap.put(43, "Tayler");
         treeMap.put(40, " Bled");
-
-
-        System.out.println(dobleAge(map));
-        System.out.println(filterMap(treeMap));
-
-
+        System.out.println("old Map: " + treeMap);
+        System.out.println("new Map: " + filterMap(treeMap));
     }
-
-    public static Map<String, Integer> dobleAge(Map<String, Integer> map) {
-        for (Map.Entry<String, Integer> e : map.entrySet()) {
-            String name = e.getKey();
-            Integer age = e.getValue();
-            map.put(name, age * 2);
-
-        }
-        return map;
-    }
-
     public static Map<Integer, String> filterMap(Map<Integer, String> treeMap) {
         Map<Integer, String> newMap = new TreeMap<>();
         for (Map.Entry<Integer, String> e : treeMap.entrySet()) {
@@ -50,4 +30,3 @@ public class MapExp {
         return newMap;
     }
 }
-
