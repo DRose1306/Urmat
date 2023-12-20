@@ -8,6 +8,7 @@ public class Task7 {
         int word = wordCount("PIF используется как как тест принятия решений руководства в области кадрового менеджмента. в", str -> {
             int count = 0;
             String[] array = str.split(" "); //снова не получилось получить более компактную запись
+
             for (int i = 0; i < array.length; i++) {
                 if (!array[i].isEmpty()) {
                     count++;
@@ -20,6 +21,7 @@ public class Task7 {
             }
             return count;
         });
+
 
         System.out.println(word);
     }

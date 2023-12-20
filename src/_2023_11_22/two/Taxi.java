@@ -13,7 +13,7 @@ public class Taxi extends Vehicle implements Maintenance{
 
     public static boolean isAvailable(boolean available){
         Random rnd = new Random();
-        int yesOrNo = rnd.nextInt(1,3);
+        int yesOrNo = rnd.nextInt();
         if (yesOrNo == 1){
             available = true;
         }else available = false;

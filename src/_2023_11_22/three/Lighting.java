@@ -14,7 +14,7 @@ public class Lighting extends Device {
 
     public static int changeBrihtnessLevel(int brightnessLevel){
         Random rnd = new Random();
-        int level = rnd.nextInt(1,100);
+        int level = rnd.nextInt();
 
         System.out.println("Текущий уровень освещения " + level);
         System.out.println("Хотите поменять уровень света?");

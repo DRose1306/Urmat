@@ -14,7 +14,7 @@ public class Heating extends Device {
 
     public static double changeTemperature(double currentTemperature, double targetTemperature) {
         Random rnd = new Random();
-        currentTemperature = rnd.nextDouble(10, 35);
+        currentTemperature = rnd.nextDouble();
 
         System.out.println("текущая температура в доме составляет " + currentTemperature + " градусов");
         System.out.println("желаете изменить температуру?");

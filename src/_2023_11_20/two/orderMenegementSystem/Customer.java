@@ -13,8 +13,8 @@ public class Customer {
 
     public static void makeOrder() {
         Random rnd = new Random();
-        int waitingTime = rnd.nextInt(1, 5);
-        int orderNum = rnd.nextInt(1, 50);
+        int waitingTime = rnd.nextInt();
+        int orderNum = rnd.nextInt();
 
         System.out.println("Введите заказ");
         String order = new Scanner(System.in).nextLine();
