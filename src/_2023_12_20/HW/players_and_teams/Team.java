@@ -1,31 +1,26 @@
-package _2023_12_20.HW;
+package _2023_12_20.HW.players_and_teams;
 
 
+import _2023_12_20.HW.enums.Position;
 import com.github.javafaker.Faker;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import static _2023_12_20.HW.Player.*;
+import java.util.*;
 
 public class Team<P extends Player> {
     static final Faker FAKER = new Faker();
     private String name;
-    private List<Player> players;
-    private int points;
+    private Set<Player> players;
 
     public Team(String name) {
         this.name = name;
-        this.players = new ArrayList<>();
-        this.points = 0;
+        this.players = new HashSet<>();
     }
 
-    public List<Player> getPlayers() {
+    public Set<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<Player> players) {
+    public void setPlayers(Set<Player> players) {
         this.players = players;
     }
 
@@ -41,16 +36,9 @@ public class Team<P extends Player> {
         this.name = name;
     }
 
-    public void addPoint() {
-        points++;
-    }
 
-    public int getPoints() {
-        return points;
-    }
-
-    public static List<Player> createPlayers(int numPlayers) { // тут создаются игроки, по одному на каждую позицию
-        List<Player> players = new ArrayList<>();              // чтобы в каждой команде было по игроку каждой позиции
+    private static Set<Player> createPlayers(int numPlayers) { // тут создаются игроки, по одному на каждую позицию
+        Set<Player> players = new HashSet<>();              // чтобы в каждой команде было по игроку каждой позиции
 
         for (int i = 0; i < numPlayers; i++) {
             for (Position position : Position.values()) {
@@ -61,8 +49,10 @@ public class Team<P extends Player> {
         return players;
     }
 
-    public static List<Team> createTeams(List<Player> players, int numOfTeams) {
-        List<Team> teams = new ArrayList<>();
+
+    public static Set<Team> createTeams(int numOfTeams) {
+        Set<Player> players = createPlayers(numOfTeams * 5);
+        Set<Team> teams = new HashSet<>();
 
         for (int i = 0; i < numOfTeams; i++) { //тут создается заданное количество команд
             Team team = new Team(FAKER.team().name());
@@ -79,7 +69,7 @@ public class Team<P extends Player> {
         return teams;
     }
 
-    public static Player findPlayerByPosition(List<Player> players, Position position) {
+    private static Player findPlayerByPosition(Set<Player> players, Position position) {
         for (Player player : players) {
             if (player.getPosition() == position) {
                 return player;
@@ -95,20 +85,6 @@ public class Team<P extends Player> {
             System.out.println("- " + player.getName() + " (" + player.getPosition() + ")");
         }
         System.out.println();
-    }
-
-    public void playGame(Team opponent) {
-        Random random = new Random();
-        boolean isWinner = random.nextBoolean();
-
-        // Обработка результатов матча
-        if (isWinner) {
-            System.out.println(this.getName() + " wins against " + opponent.getName() + "!");
-            this.addPoint();
-        } else {
-            System.out.println(opponent.getName() + " wins against " + this.getName() + "!");
-            opponent.addPoint();
-        }
     }
 
 }

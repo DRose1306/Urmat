@@ -1,7 +1,7 @@
-package _2023_12_20.HW;
+package _2023_12_20.HW.players_and_teams;
 
-import java.util.ArrayList;
-import java.util.List;
+import _2023_12_20.HW.enums.Position;
+import _2023_12_20.HW.players_and_teams.Player;
 
 public class NbaPlayer extends Player {
     public NbaPlayer(String name, Position position) {

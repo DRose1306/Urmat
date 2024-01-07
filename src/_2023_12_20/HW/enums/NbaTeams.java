@@ -1,4 +1,4 @@
-package _2023_12_20.HW;
+package _2023_12_20.HW.enums;
 
 public enum NbaTeams {
     Atlanta_Hawks,

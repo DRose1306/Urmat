@@ -1,9 +1,8 @@
-package _2023_12_20.HW;
+package _2023_12_20.HW.players_and_teams;
 
+import _2023_12_20.HW.enums.Position;
 import com.github.javafaker.Faker;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Player {
