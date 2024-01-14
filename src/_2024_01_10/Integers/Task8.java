@@ -1,4 +1,4 @@
-package _2024_01_10;
+package _2024_01_10.Integers;
 
 import java.util.List;
 

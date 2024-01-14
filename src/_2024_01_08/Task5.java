@@ -16,7 +16,8 @@ public class Task5 {
     static List<String> filter(List<String> words) {
         return words.stream()
                 .filter(el -> el.startsWith("a"))
-                .map(String::toUpperCase).toList();
+                .map(String::toUpperCase)
+                .toList();
     }
     static List<String> uniqueValues(List<String> words){
         return words.stream()

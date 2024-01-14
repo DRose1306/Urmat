@@ -1,4 +1,4 @@
-package _2024_01_10;
+package _2024_01_10.Characters;
 
 import java.util.List;
 

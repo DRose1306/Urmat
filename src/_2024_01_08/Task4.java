@@ -14,7 +14,9 @@ public class Task4 {
     //Преобразовать список строк в список чисел
     static void parseInt(List<String> strings) {
         List<Integer> list = strings.stream()
-                .map(Integer::parseInt).collect(Collectors.toList());
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
         System.out.println(list);
     }
 }

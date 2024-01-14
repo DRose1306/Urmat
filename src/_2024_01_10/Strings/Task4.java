@@ -1,4 +1,4 @@
-package _2024_01_10;
+package _2024_01_10.Strings;
 
 import java.util.List;
 import java.util.Optional;
