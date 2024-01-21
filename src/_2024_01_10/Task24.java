@@ -25,8 +25,8 @@ public class Task24 {
     }
 
    /* static <T> List<T> shuffleList(List<T> input) {
-        List<T> list = new java.util.ArrayList<>(input.stream()
-                .toList());
+        List<T> list = input.stream()
+                .toList();
 
         return input.stream()
                 .map(Collections.shuffle(list))
