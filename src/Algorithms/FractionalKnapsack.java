@@ -30,7 +30,7 @@ public class FractionalKnapsack {
                 weightSoFar += items[currentItem].getWeight();
             } else {
                 //берем только часть объекта
-                valueSoFar += ((W - weightSoFar) / (double) items[currentItem].getWeight()) * items[currentItem].getValue();
+                valueSoFar += (int) (((W - weightSoFar) / (double) items[currentItem].getWeight()) * items[currentItem].getValue());
 
                 weightSoFar = W;
             }

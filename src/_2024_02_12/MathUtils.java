@@ -1,0 +1,33 @@
+package _2024_02_12;
+
+import java.util.Collection;
+import java.util.List;
+
+
+public class MathUtils {
+    public static int calculateSum(int[] numbers) {
+        int sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+        return sum;
+    }
+
+    public static int calculateSum(List<Integer> numbers) {
+        int sum = 0;
+        for (Integer num : numbers) {
+            sum += num;
+        }
+        return sum;
+    }
+
+    //можно написать метод под любую СД
+    public static int calculateSum2(Collection<Integer> p) {
+        int sum = 0;
+        for (Integer num : p) {
+            sum += num;
+        }
+        return sum;
+    }
+
+}

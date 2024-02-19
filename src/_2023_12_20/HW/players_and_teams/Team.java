@@ -2,11 +2,25 @@ package _2023_12_20.HW.players_and_teams;
 
 
 import _2023_12_20.HW.enums.Position;
+import _2023_12_20.HW.errorMessage.ErrorMessage;
+import _2023_12_20.HW.errorMessage.SomethingWentWrongExeption;
+import _2023_12_20.HW.errorMessage.SomethingNotExistException;
+import _2023_12_20.HW.errorMessage.SomethingWrongMessage;
 import com.github.javafaker.Faker;
 
 import java.util.*;
 
 public class Team<P extends Player> {
+    //private String name;
+    //    private List<P> participants = new ArrayList<>(100);
+    //    private double score;
+    //    private int wins;
+    //    private int draws;
+    //    private int loses;
+    //    private int maxWinStreak;
+    //
+
+    //TODO добавить поле возраст игрокам
     static final Faker FAKER = new Faker();
     private String name;
     private Set<Player> players;
@@ -50,7 +64,11 @@ public class Team<P extends Player> {
     }
 
 
-    public static Set<Team> createTeams(int numOfTeams) {
+    public static Set<Team> createTeams(int numOfTeams) throws SomethingNotExistException, SomethingWentWrongExeption {
+        if (numOfTeams <= 0) {
+            throw new SomethingNotExistException(ErrorMessage.INVALID_VALUE);
+        }
+
         Set<Player> players = createPlayers(numOfTeams * 5);
         Set<Team> teams = new HashSet<>();
 
@@ -69,7 +87,11 @@ public class Team<P extends Player> {
         return teams;
     }
 
-    private static Player findPlayerByPosition(Set<Player> players, Position position) {
+    private static Player findPlayerByPosition(Set<Player> players, Position position) throws SomethingWentWrongExeption {
+        if (players.isEmpty()){
+            throw new SomethingWentWrongExeption(SomethingWrongMessage.SOMETHING_WRONG);
+        }
+
         for (Player player : players) {
             if (player.getPosition() == position) {
                 return player;

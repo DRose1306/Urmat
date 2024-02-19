@@ -1,5 +1,7 @@
 package _2023_12_20.HW.gameLogic;
 
+import _2023_12_20.HW.errorMessage.SomethingWentWrongExeption;
+import _2023_12_20.HW.errorMessage.SomethingWrongMessage;
 import _2023_12_20.HW.players_and_teams.Team;
 
 import java.util.*;
@@ -25,7 +27,11 @@ public class Handler {
         return commands;
     }
 
-    public static int playGame(Team team1, Team opponent) {
+    public static int playGame(Team team1, Team opponent) throws SomethingWentWrongExeption {
+        if (team1.getPlayers().isEmpty() || opponent.getPlayers().isEmpty()){
+            throw new SomethingWentWrongExeption(SomethingWrongMessage.SOMETHING_WRONG);
+        }
+
         Random random = new Random();
         int result = random.nextInt(3);
 
@@ -41,7 +47,13 @@ public class Handler {
     }
 
 
-    private void updateResults(Team team1, Team opponent, int result) {
+    private void updateResults(Team team1, Team opponent, int result) throws IllegalArgumentException {
+        if (team1.getPlayers().isEmpty() || opponent.getPlayers().isEmpty()){
+            throw new SomethingWentWrongExeption(SomethingWrongMessage.SOMETHING_WRONG);
+        }
+        if (result < 0){
+            throw new IllegalArgumentException();
+        }
         results.putIfAbsent(team1, 0.0);
         results.putIfAbsent(opponent, 0.0);
 
@@ -74,7 +86,7 @@ public class Handler {
     }
 
 
-    public void playAllRounds() {
+    public void playAllRounds() throws SomethingWentWrongExeption {
         int numTeams = commands.size();
         int totalRounds = numTeams - 1;
 

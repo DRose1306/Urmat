@@ -14,7 +14,7 @@ public class Task6 {
         //Соберите статистику по рейтингам (минимальный, максимальный, средний) и запишите ее в новый файл.
 
         try (BufferedReader reader = new BufferedReader(new FileReader("f.txt"));
-             FileWriter writer = new FileWriter("Task6.txt");) {
+             FileWriter writer = new FileWriter("Task6.txt")) {
 
             double minRating = reader.lines()
                     .mapToDouble(line -> Double.parseDouble(line.split(", ")[1]))

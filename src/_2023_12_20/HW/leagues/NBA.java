@@ -1,5 +1,6 @@
 package _2023_12_20.HW.leagues;
 
+import _2023_12_20.HW.errorMessage.SomethingWentWrongExeption;
 import _2023_12_20.HW.gameLogic.Handler;
 import _2023_12_20.HW.gameLogic.OtherMethods;
 import _2023_12_20.HW.players_and_teams.Team;
@@ -11,7 +12,7 @@ import static _2023_12_20.HW.gameLogic.OtherMethods.*;
 
 public class NBA {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SomethingWentWrongExeption {
         Handler handler = new Handler();
 
         // Генерация и добавление команд в Handler
